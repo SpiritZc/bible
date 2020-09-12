@@ -1,0 +1,36 @@
+###########################################linux服务器账号密码###################################
+root
+bible@123
+后台地址
+http://39.105.80.115:8081
+
+############################################jenkins#############################################
+地址
+http://39.105.80.115:9000
+重启
+http://39.105.80.115:9000/restart
+用户名
+admin
+密码
+admin
+
+##############################################yapi#############################################
+开机启动
+pm2 start /usr/local/yapi/vendors/server/app.js --watch
+启动执行
+pm2 start /usr/local/yapi/vendors/server/app.js
+关闭执行
+pm2 stop /usr/local/yapi/vendors/server/app.js
+
+启动mongo
+service mongod start
+
+yapi地址
+http://39.105.80.115:3000/
+
+超级管理员用户名
+admin@admin.com
+密码
+ymfe.org
+
+

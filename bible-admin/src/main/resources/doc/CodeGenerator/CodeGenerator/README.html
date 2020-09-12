@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<p>http://git.oschina.net/ptma/CodeGenerator</p>
+<h1>CodeGenerator</h1>
+<p>这是一个使用 Freemarker 和 Velocity 模板来生代码的工具。</p>
+<p>本生成器只是将数据库中的表结构数据提取出来，然后将这份结构模型提交给模板引擎, 根据你自定义的模板生成你需要的代码。</p>
+<h2>配置文件</h2>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;
+&lt;configuration&gt;
+    &lt;classpath&gt;
+        &lt;!-- 引入JDBC驱动，手动添加 --&gt;
+        &lt;entry&gt;lib/mysql-connector-java-5.1.36-bin.jar&lt;/entry&gt;
+    &lt;/classpath&gt;
+    &lt;!-- 代码生成目标基准目录 --&gt;
+    &lt;tagertProject&gt;D:\temp&lt;/tagertProject&gt;
+    &lt;!-- 基本包 --&gt;
+    &lt;basePackage&gt;org.joy&lt;/basePackage&gt;
+    &lt;!-- 模块名 --&gt;
+    &lt;moduleName&gt;test&lt;/moduleName&gt;
+    &lt;templates&gt;
+        &lt;!-- 模板 ，手动添加 --&gt;
+        &lt;template name=&quot;实体类&quot; engine=&quot;freemarker&quot;&gt;
+            &lt;!-- 模板文件 --&gt;
+            &lt;templateFile&gt;./entity.ftl&lt;/templateFile&gt;
+            &lt;!-- 文件路径 --&gt;
+            &lt;targetPath&gt;${tagertProject}\src\${basePackage}\${moduleName}\entity\&lt;/targetPath&gt;
+            &lt;!-- 文件名 --&gt;
+            &lt;targetFileName&gt;${table.className}.java&lt;/targetFileName&gt;
+            &lt;!-- 文件编码 --&gt;
+            &lt;fileEncoding&gt;UTF-8&lt;/fileEncoding&gt;
+        &lt;/template&gt;
+    &lt;/templates&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<h2>模板中可用的变量和方法</h2>
+<pre><code>String       tagertProject       目标工程路径(代码保存的基准路径)
+String       basePackage         基准包
+String       moduleName          模块名
+</code></pre>
+
+<h3>table 对象</h3>
+<h4>属性</h4>
+<pre><code>String       tableName           表名
+
+String       tableType           表类型
+
+String       tableAlias          表别名
+
+String       remarks             表注释
+
+String       remarksUnicode      表注释转Unicode后的字符串
+
+String       className           实体类名
+
+String       javaProperty        实体类作为属性时的名字 == ${table.className?uncap_first}
+
+List&lt;Column&gt; primaryKeys         主键集
+
+List&lt;Column&gt; baseColumns         基本字段集
+
+List&lt;Column&gt; columns             所有字段  == primaryKeys + baseColumns
+
+List&lt;Key&gt;    importedKeys        所有 importedKeys
+
+List&lt;Key&gt;    exportedKeys        所有 exportedKeys
+
+boolean      hasDateColumn       是否有日期类型字段
+
+boolean      hasBigDecimalColumn 是否有 BigDecimal 字段
+
+boolean      hasNotNullColumn    是否有非空的基本类型字段
+
+boolean      hasNotBlankColumn   是否有非空的 String 字段
+</code></pre>
+
+<h3>Column</h3>
+<h4>属性</h4>
+<pre><code>String  columnName        字段名
+
+boolean primaryKey        是否为主键
+
+boolean foreignKey        是否为外键
+
+int     size              字段长度
+
+int     decimalDigits     小数位长度
+
+boolean nullable          是否可空
+
+boolean unique            是否唯一值
+
+boolean indexed           是否有索引
+
+String  defaultValue      默认值
+
+String  remarks           注释
+
+String  remarksUnicode    数字转Unicode后的字符串
+
+int     jdbcType          对应 java.sql.Types
+
+String  jdbcTypeName      对应jdbcType的名称
+
+String  javaProperty      属性名
+
+String  javaType          java类型，比如String
+
+String  fullJavaType      完整的Java类型，比如 java.lang.String
+
+String  getterMethodName  Get方法名
+
+String  setterMethodName  Set方法名
+</code></pre>
+
+<h4>方法</h4>
+<pre><code>boolean isString()        是否是字符串
+
+boolean isFloatNumber()   是否是浮点型，含Float、Double、BigDecimal
+
+boolean isIntegerNumber() 是否是整型，含Byte、Short、Integer、Long
+
+boolean isBigDecimal()    是否是BigDecimal类型
+
+boolean isBoolean()       是否是布尔类型
+
+boolean isDate()          是否有日期类型，含Date、Timestamp、Time
+
+boolean isBLOB()          是否有 BLOB、CLOB、LONGVARCHAR、LONGVARBINARY或VARBINARY
+</code></pre>
+
+<h3>Key</h3>
+<pre><code>String  pkTableName       PKTABLE_NAME
+
+String  pkColumnName      PKCOLUMN_NAME
+
+String  fkTableName       FKTABLE_NAME
+
+String  fkColumnName      FKCOLUMN_NAME
+
+Integer seq               KEY_SEQ
+</code></pre>
+
+<h2>作者</h2>
+<p>ptma@163.com</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

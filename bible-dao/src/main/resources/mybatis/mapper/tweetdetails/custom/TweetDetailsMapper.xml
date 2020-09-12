@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 本文件由代码生成器自动完成 -->
+<mapper namespace="com.moon.bible.mapper.tweetdetails.TweetDetailsMapper" >
+
+  <select id="selectByTopicIdAndSize" resultMap="BaseResultMap">
+	  SELECT
+		id,
+		topic_id,
+		title,
+		from_author,
+		content,
+		img,
+		creator,
+		creator_name,
+		create_time,
+		del_flag
+	  FROM tweet_details
+	  WHERE
+	  <if test="id !=null">
+		 topic_id = #{id,jdbcType=BIGINT}
+	  </if>
+	  <if test="size != null">
+		  LIMIT #{size}
+	  </if>
+
+  </select>
+
+</mapper>

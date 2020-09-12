@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 本文件由代码生成器自动完成 -->
+<mapper namespace="com.moon.bible.mapper.tweetcollect.TweetCollectMapper" >
+
+ 	<select id="getCollectList" parameterType="Long" resultMap="com.moon.bible.mapper.tweetdetails.TweetDetailsMapper.BaseResultMap" >
+		SELECT
+		td.id,
+		td.topic_id,
+		td.title,
+		td.from_author,
+		td.content,
+		td.img,
+		td.creator,
+		td.creator_name,
+		td.create_time,
+		td.del_flag,
+		td.count
+		FROM tweet_collect tc
+		LEFT JOIN tweet_details td ON tc.tweetdetails_id = td.id AND td.del_flag = 1
+		WHERE 1=1
+		<if test="userId!=null" >
+			AND tc.user_id = #{userId}
+		</if>
+	</select>
+</mapper>

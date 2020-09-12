@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 本文件由代码生成器自动完成 -->
+<mapper namespace="com.moon.bible.mapper.tchapter.TChapterMapper" >
+
+  <!-- 字段与实体的映射 -->
+  <resultMap id="BaseResultMap" type="com.moon.bible.entity.tchapter.TChapter">
+     <id column="id" property="id" jdbcType="BIGINT" />
+	 <result column="volume" property="volume" jdbcType="VARCHAR" />
+	 <result column="chapter" property="chapter" jdbcType="VARCHAR" />
+	 <result column="section" property="section" jdbcType="VARCHAR" />
+	 <result column="book_id" property="bookId" jdbcType="BIGINT" />
+	 <result column="word_count" property="wordCount" jdbcType="INTEGER" />
+	 <result column="intro" property="intro" jdbcType="LONGVARCHAR" />
+	 <result column="creator" property="creator" jdbcType="BIGINT" />
+	 <result column="creator_name" property="creatorName" jdbcType="VARCHAR" />
+	 <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	 <result column="del_flag" property="delFlag" jdbcType="BIT" />
+	 <result column="read_num" property="readNum" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="sql_where_like">
+	<where>
+		<if test="id !=null and id !=''">
+			and `id` = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="volume !=null and volume !=''">
+			and `volume` like concat(concat("%",#{volume,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="chapter !=null and chapter !=''">
+			and `chapter` like concat(concat("%",#{chapter,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="section !=null and section !=''">
+			and `section` like concat(concat("%",#{section,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="bookId !=null">
+			and `book_id` = #{bookId,jdbcType=BIGINT}
+		</if>
+		<if test="wordCount !=null">
+			and `word_count` = #{wordCount,jdbcType=INTEGER}
+		</if>
+		<if test="intro !=null and intro !=''">
+			and `intro` like concat(concat("%",#{intro,jdbcType=LONGVARCHAR}),"%")
+		</if>
+		<if test="creator !=null">
+			and `creator` = #{creator,jdbcType=BIGINT}
+		</if>
+		<if test="creatorName !=null and creatorName !=''">
+			and `creator_name` = #{creatorName,jdbcType=VARCHAR}
+		</if>
+		<if test="createTime !=null">
+		</if>
+		<if test="delFlag !=null">
+			and `del_flag` = #{delFlag,jdbcType=INTEGER}
+		</if>
+		<if test="readNum !=null">
+			and `read_num` = #{readNum,jdbcType=INTEGER}
+		</if>
+	</where>
+  </sql>
+  <!-- 字段集合 -->
+  <sql id="Base_Column_List">
+    id,volume,chapter,section,book_id,word_count,intro,creator,creator_name,create_time,del_flag,read_num
+  </sql>
+
+  <!-- 根据条件模糊查询 -->
+  <select id="searchDataLike" resultMap="BaseResultMap" parameterType="com.moon.bible.entity.tchapter.TChapter">
+    select 
+    <include refid="Base_Column_List" />
+    from `t_chapter` 
+    <include refid="sql_where_like" />
+    <if test="orderSql !=null and orderSql !='' ">   
+      order by ${orderSql}
+    </if>
+  </select>
+
+</mapper>

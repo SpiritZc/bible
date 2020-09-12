@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 本文件由代码生成器自动完成 -->
+<mapper namespace="com.moon.bible.mapper.userloginlog.UserLoginLogMapper" >
+
+  <!-- 字段与实体的映射 -->
+  <resultMap id="BaseResultMap" type="com.moon.bible.entity.userloginlog.UserLoginLog">
+     <id column="id" property="id" jdbcType="BIGINT" />
+	 <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+	 <result column="operate_method" property="operateMethod" jdbcType="VARCHAR" />
+	 <result column="operate_params" property="operateParams" jdbcType="VARCHAR" />
+	 <result column="operate_time" property="operateTime" jdbcType="TIMESTAMP" />
+	 <result column="log_status" property="logStatus" jdbcType="TINYINT" />
+	 <result column="operate_status" property="operateStatus" jdbcType="TINYINT" />
+	 <result column="error_info" property="errorInfo" jdbcType="VARCHAR" />
+	 <result column="result" property="result" jdbcType="VARCHAR" />
+	 <result column="operate_ip" property="operateIp" jdbcType="VARCHAR" />
+	 <result column="creator" property="creator" jdbcType="BIGINT" />
+	 <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	 <result column="del_flag" property="delFlag" jdbcType="TINYINT" />
+  </resultMap>
+
+  <sql id="sql_where_like">
+	<where>
+		<if test="id !=null and id !=''">
+			and `id` = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="accountName !=null and accountName !=''">
+			and `account_name` like concat(concat("%",#{accountName,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="operateMethod !=null and operateMethod !=''">
+			and `operate_method` like concat(concat("%",#{operateMethod,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="operateParams !=null and operateParams !=''">
+			and `operate_params` like concat(concat("%",#{operateParams,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="operateTime !=null">
+			and `operate_time` = #{operateTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="logStatus !=null">
+			and `log_status` = #{logStatus,jdbcType=TINYINT}
+		</if>
+		<if test="operateStatus !=null">
+			and `operate_status` = #{operateStatus,jdbcType=TINYINT}
+		</if>
+		<if test="errorInfo !=null and errorInfo !=''">
+			and `error_info` like concat(concat("%",#{errorInfo,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="result !=null and result !=''">
+			and `result` like concat(concat("%",#{result,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="operateIp !=null and operateIp !=''">
+			and `operate_ip` like concat(concat("%",#{operateIp,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="creator !=null">
+			and `creator` = #{creator,jdbcType=BIGINT}
+		</if>
+		<if test="createTime !=null">
+		</if>
+		<if test="delFlag !=null">
+			and `del_flag` = #{delFlag,jdbcType=TINYINT}
+		</if>
+	</where>
+  </sql>
+  <!-- 字段集合 -->
+  <sql id="Base_Column_List">
+    id,account_name,operate_method,operate_params,operate_time,log_status,operate_status,error_info,result,operate_ip,creator,create_time,del_flag
+  </sql>
+
+  <!-- 根据条件模糊查询 -->
+  <select id="searchDataLike" resultMap="BaseResultMap" parameterType="com.moon.bible.entity.userloginlog.UserLoginLog">
+    select 
+    <include refid="Base_Column_List" />
+    from `user_login_log` 
+    <include refid="sql_where_like" />
+    <if test="orderSql !=null and orderSql !='' ">   
+      order by ${orderSql}
+    </if>
+  </select>
+
+</mapper>

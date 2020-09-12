@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 本文件由代码生成器自动完成 -->
+<mapper namespace="com.moon.bible.mapper.sysrole.SysRoleMapper" >
+
+    <!-- 根据条件模糊查询 -->
+    <select id="getUserRole" resultMap="BaseResultMap" parameterType="Long">
+        SELECT
+          sr.*
+        FROM sys_role sr
+        LEFT JOIN sys_user_role sur
+        ON sr.id = sur.role_id AND sur.del_flag = 1
+        WHERE
+            sr.del_flag = 1
+        <if test="id !=null and id !=''">
+            and sur.user_id = #{id,jdbcType=BIGINT}
+        </if>
+
+    </select>
+</mapper>

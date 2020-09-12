@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 本文件由代码生成器自动完成 -->
+<mapper namespace="com.moon.bible.mapper.sysuser.SysUserMapper" >
+
+  <!-- 字段与实体的映射 -->
+  <resultMap id="BaseResultMap" type="com.moon.bible.entity.sysuser.SysUser">
+     <id column="id" property="id" jdbcType="BIGINT" />
+	 <result column="userName" property="userName" jdbcType="VARCHAR" />
+	 <result column="password" property="password" jdbcType="VARCHAR" />
+	 <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+	 <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+	 <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+	 <result column="status" property="status" jdbcType="TINYINT" />
+	 <result column="is_admin" property="isAdmin" jdbcType="TINYINT" />
+	 <result column="creator" property="creator" jdbcType="BIGINT" />
+	 <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+	 <result column="creator_name" property="creatorName" jdbcType="VARCHAR" />
+	 <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	 <result column="del_flag" property="delFlag" jdbcType="TINYINT" />
+  </resultMap>
+
+  <sql id="sql_where_like">
+	<where>
+		<if test="id !=null and id !=''">
+			and `id` = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="userName !=null and userName !=''">
+			and `userName` like concat(concat("%",#{userName,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="password !=null and password !=''">
+			and `password` like concat(concat("%",#{password,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="accountName !=null and accountName !=''">
+			and `account_name` like concat(concat("%",#{accountName,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="userPhone !=null and userPhone !=''">
+			and `user_phone` like concat(concat("%",#{userPhone,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="userEmail !=null and userEmail !=''">
+			and `user_email` like concat(concat("%",#{userEmail,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="status !=null">
+			and `status` = #{status,jdbcType=INTEGER}
+		</if>
+		<if test="isAdmin !=null">
+			and `is_admin` = #{isAdmin,jdbcType=INTEGER}
+		</if>
+		<if test="creator !=null">
+			and `creator` = #{creator,jdbcType=BIGINT}
+		</if>
+		<if test="lastLoginTime !=null">
+			and `last_login_time` = #{lastLoginTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="creatorName !=null and creatorName !=''">
+			and `creator_name` = #{creatorName,jdbcType=VARCHAR}
+		</if>
+		<if test="createTime !=null">
+		</if>
+		<if test="delFlag !=null">
+			and `del_flag` = #{delFlag,jdbcType=INTEGER}
+		</if>
+	</where>
+  </sql>
+  <!-- 字段集合 -->
+  <sql id="Base_Column_List">
+    id,userName,password,account_name,user_phone,user_email,status,is_admin,creator,last_login_time,creator_name,create_time,del_flag
+  </sql>
+
+  <!-- 根据条件模糊查询 -->
+  <select id="searchDataLike" resultMap="BaseResultMap" parameterType="com.moon.bible.entity.sysuser.SysUser">
+    select 
+    <include refid="Base_Column_List" />
+    from `sys_user` 
+    <include refid="sql_where_like" />
+    <if test="orderSql !=null and orderSql !='' ">   
+      order by ${orderSql}
+    </if>
+  </select>
+
+</mapper>

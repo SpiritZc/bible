@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 本文件由代码生成器自动完成 -->
+<mapper namespace="com.moon.bible.mapper.tbook.TBookMapper" >
+
+    <select id="tableQueryByTime" parameterType="com.moon.bible.dto.tbook.TBookQueryDto" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+            from `t_book`
+            <where>
+                <if test="id !=null and id !=''">
+                    and `id` = #{id,jdbcType=BIGINT}
+                </if>
+                <if test="bookName !=null and bookName !=''">
+                    and `book_name` like concat(concat("%",#{bookName,jdbcType=VARCHAR}),"%")
+                </if>
+                <if test="pinyin !=null and pinyin !=''">
+                    and `pinyin` like concat(concat("%",#{pinyin,jdbcType=VARCHAR}),"%")
+                </if>
+                <if test="cid !=null">
+                    and `cid` = #{cid,jdbcType=BIGINT}
+                </if>
+                <if test="author !=null and author !=''">
+                    and `author` like concat(concat("%",#{author,jdbcType=VARCHAR}),"%")
+                </if>
+                <if test="image !=null and image !=''">
+                    and `image` like concat(concat("%",#{image,jdbcType=VARCHAR}),"%")
+                </if>
+                <if test="publishing !=null and publishing !=''">
+                    and `publishing` like concat(concat("%",#{publishing,jdbcType=VARCHAR}),"%")
+                </if>
+                <if test="description !=null and description !=''">
+                    and `description` like concat(concat("%",#{description,jdbcType=VARCHAR}),"%")
+                </if>
+                <if test="state !=null">
+                    and `state` = #{state,jdbcType=INTEGER}
+                </if>
+                <if test="startDate !=null and startDate !=''">
+                	  and #{startDate} &lt;= date_format(`deployTime`, '%Y-%m-%d')
+                </if>
+                <if test="endDate !=null and endDate !=''">
+                    and  #{endDate} &gt;= DATE_FORMAT(`deployTime`,'%Y-%m-%d')
+                </if>
+                <if test="hits !=null">
+                    and `hits` = #{hits,jdbcType=INTEGER}
+                </if>
+                <if test="url !=null and url !=''">
+                    and `url` like concat(concat("%",#{url,jdbcType=VARCHAR}),"%")
+                </if>
+                <if test="creator !=null">
+                    and `creator` = #{creator,jdbcType=BIGINT}
+                </if>
+                <if test="creatorName !=null and creatorName !=''">
+                    and `creator_name` = #{creatorName,jdbcType=VARCHAR}
+                </if>
+                <if test="createTime !=null">
+                </if>
+                <if test="delFlag !=null">
+                    and `del_flag` = #{delFlag,jdbcType=INTEGER}
+                </if>
+            </where>
+            <if test="orderSql !=null and orderSql !='' ">
+              order by ${orderSql}
+            </if>
+    </select>
+
+    <insert id="insertList" parameterType="List" >
+        INSERT INTO t_chapter (volume,chapter,section,book_id,word_count,intro,read_num)
+        values
+        <foreach collection="list" item="item" separator="," index="index">
+            (#{item.volume},
+            #{item.chapter},
+            #{item.section},
+            #{item.bookId},
+            #{item.wordCount},
+            #{item.intro},
+            #{item.readNum})
+        </foreach>
+
+    </insert>
+
+</mapper>

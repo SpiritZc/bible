@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 本文件由代码生成器自动完成 -->
+<mapper namespace="com.moon.bible.mapper.sysfunction.SysFunctionMapper" >
+
+  <!-- 字段与实体的映射 -->
+  <resultMap id="BaseResultMap" type="com.moon.bible.entity.sysfunction.SysFunction">
+     <id column="id" property="id" jdbcType="BIGINT" />
+	 <result column="menu_id" property="menuId" jdbcType="BIGINT" />
+	 <result column="function_code" property="functionCode" jdbcType="VARCHAR" />
+	 <result column="function_name" property="functionName" jdbcType="VARCHAR" />
+	 <result column="function_url" property="functionUrl" jdbcType="VARCHAR" />
+	 <result column="function_type" property="functionType" jdbcType="TINYINT" />
+	 <result column="rule" property="rule" jdbcType="TINYINT" />
+	 <result column="sort" property="sort" jdbcType="TINYINT" />
+	 <result column="creator" property="creator" jdbcType="BIGINT" />
+	 <result column="creator_name" property="creatorName" jdbcType="VARCHAR" />
+	 <result column="del_flag" property="delFlag" jdbcType="TINYINT" />
+  </resultMap>
+
+  <sql id="sql_where_like">
+	<where>
+		<if test="id !=null and id !=''">
+			and `id` = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="menuId !=null">
+			and `menu_id` = #{menuId,jdbcType=BIGINT}
+		</if>
+		<if test="functionCode !=null and functionCode !=''">
+			and `function_code` like concat(concat("%",#{functionCode,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="functionName !=null and functionName !=''">
+			and `function_name` like concat(concat("%",#{functionName,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="functionUrl !=null and functionUrl !=''">
+			and `function_url` like concat(concat("%",#{functionUrl,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="functionType !=null">
+			and `function_type` = #{functionType,jdbcType=TINYINT}
+		</if>
+		<if test="rule !=null">
+			and `rule` = #{rule,jdbcType=TINYINT}
+		</if>
+		<if test="sort !=null">
+			and `sort` = #{sort,jdbcType=TINYINT}
+		</if>
+		<if test="creator !=null">
+			and `creator` = #{creator,jdbcType=BIGINT}
+		</if>
+		<if test="creatorName !=null and creatorName !=''">
+			and `creator_name` = #{creatorName,jdbcType=VARCHAR}
+		</if>
+		<if test="delFlag !=null">
+			and `del_flag` = #{delFlag,jdbcType=TINYINT}
+		</if>
+	</where>
+  </sql>
+  <!-- 字段集合 -->
+  <sql id="Base_Column_List">
+    id,menu_id,function_code,function_name,function_url,function_type,rule,sort,creator,creator_name,del_flag
+  </sql>
+
+  <!-- 根据条件模糊查询 -->
+  <select id="searchDataLike" resultMap="BaseResultMap" parameterType="com.moon.bible.entity.sysfunction.SysFunction">
+    select 
+    <include refid="Base_Column_List" />
+    from `sys_function` 
+    <include refid="sql_where_like" />
+    <if test="orderSql !=null and orderSql !='' ">   
+      order by ${orderSql}
+    </if>
+  </select>
+
+</mapper>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 本文件由代码生成器自动完成 -->
+<mapper namespace="com.moon.bible.mapper.sysuser.SysUserMapper" >
+
+    <!-- 一对多：instacne、node -->
+	<resultMap id="userRoleMap"
+		extends="BaseResultMap" type="com.moon.bible.dto.sysuser.UserRoleDto">
+		<association property="sysRole" javaType="com.moon.bible.entity.sysrole.SysRole"
+		        columnPrefix="ro_" resultMap="com.moon.bible.mapper.sysrole.SysRoleMapper.BaseResultMap">
+        </association>
+	</resultMap>
+
+    <select id="tablePagingQueryByAuthority" parameterType="com.moon.bible.entity.sysuser.SysUser" resultType="com.moon.bible.dto.sysuser.UserWithRoleDto">
+        SELECT
+            su.id,
+            su.username,
+            su.password,
+            su.account_name,
+            su.user_phone,
+            su.user_email,
+            su.status,
+            su.is_admin,
+            su.creator,
+            su.last_login_time,
+            su.creator_name,
+            su.create_time,
+            su.del_flag,
+            sr.id as roleId,
+            sr.role_name as roleName
+        FROM sys_user su
+        LEFT JOIN sys_user_role sur ON su.id = sur.user_id AND sur.del_flag = 1
+        LEFT JOIN sys_role sr ON sr.id = sur.role_id AND sr.del_flag = 1
+        <where>
+		<if test="id !=null and id !=''">
+			and su.id = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="userName !=null and userName !=''">
+			and su.username like concat(concat("%",#{username,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="password !=null and password !=''">
+			and su.password like concat(concat("%",#{password,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="accountName !=null and accountName !=''">
+			and su.account_name like concat(concat("%",#{accountName,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="userPhone !=null and userPhone !=''">
+			and su.user_phone like concat(concat("%",#{userPhone,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="userEmail !=null and userEmail !=''">
+			and su.user_email like concat(concat("%",#{userEmail,jdbcType=VARCHAR}),"%")
+		</if>
+		<if test="status !=null">
+			and su.status = #{status,jdbcType=INTEGER}
+		</if>
+		<if test="isAdmin !=null">
+			and su.is_admin = #{isAdmin,jdbcType=INTEGER}
+		</if>
+		<if test="creator !=null">
+			and su.creator = #{creator,jdbcType=BIGINT}
+		</if>
+		<if test="lastLoginTime !=null">
+			and su.last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="creatorName !=null and creatorName !=''">
+			and su.creator_name = #{creatorName,jdbcType=VARCHAR}
+		</if>
+		<if test="createTime !=null">
+		</if>
+		<if test="delFlag !=null">
+			and su.del_flag = #{delFlag,jdbcType=INTEGER}
+		</if>
+	</where>
+    </select>
+
+    <select id="getDetail" parameterType="Long" resultMap="userRoleMap">
+        SELECT
+            su.id,
+            su.username,
+            su.password,
+            su.account_name,
+            su.user_phone,
+            su.user_email,
+            su.status,
+            su.is_admin,
+            su.creator,
+            su.last_login_time,
+            su.creator_name,
+            su.create_time,
+            su.del_flag,
+            sr.id as ro_id,
+            sr.role_code as ro_role_code,
+            sr.role_name as ro_role_name,
+            sr.role_desc as ro_role_desc,
+            sr.status as ro_role_status,
+            sr.creator as ro_role_creator,
+            sr.creator_name as ro_creator_name,
+            sr.create_time as ro_create_time,
+            sr.del_flag as ro_del_flag
+        FROM sys_user su
+        LEFT JOIN sys_user_role sur ON su.id = sur.user_id AND sur.del_flag = 1
+        LEFT JOIN sys_role sr ON sur.role_id = sr.id AND sr.del_flag = 1
+        WHERE
+           <if test="id !=null">
+			 su.id = #{id,jdbcType=BIGINT}
+		   </if>
+    </select>
+
+    <select id="getUserByRoleId" parameterType="String" resultMap="BaseResultMap">
+          SELECT
+           su.id,
+            su.username,
+            su.password,
+            su.account_name,
+            su.user_phone,
+            su.user_email,
+            su.status,
+            su.is_admin,
+            su.creator,
+            su.last_login_time,
+            su.creator_name,
+            su.create_time,
+            su.del_flag
+          FROM sys_user su
+          LEFT JOIN sys_user_role sur ON su.id = sur.user_id AND sur.del_flag = 1
+          WHERE
+        <if test="roleId !=null">
+            sur.role_id = #{roleId,jdbcType=BIGINT}
+        </if>
+    </select>
+
+</mapper>

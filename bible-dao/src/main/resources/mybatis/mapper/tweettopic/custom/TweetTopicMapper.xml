@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 本文件由代码生成器自动完成 -->
+<mapper namespace="com.moon.bible.mapper.tweettopic.TweetTopicMapper" >
+
+	<resultMap id="TweetTopicAndDetails" type="com.moon.bible.dto.tweettopic.TweetTopicAndDetails" extends="BaseResultMap" >
+		<collection property="tweetDetails" columnPrefix="tweet_" resultMap="com.moon.bible.mapper.tweetdetails.TweetDetailsMapper.BaseResultMap" />
+	</resultMap>
+
+	<select id="getTweetTopicAndDetails" resultMap="TweetTopicAndDetails" parameterType="Integer" >
+		SELECT
+			id
+			topic_name
+			creator
+			creator_name
+			create_time
+			del_flag
+
+		FROM tweet_topic tp
+		LEFT JOIN tweet_details td ON tp.id = td.topic_id AND td.del_flag = 1
+		WHERE tp.del_flag = 1
+		limit 1
+
+	</select>
+
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 本文件由代码生成器自动完成 -->
+<mapper namespace="com.moon.bible.mapper.sysfunction.SysFunctionMapper" >
+
+    <select id="getFunctionsByRole" parameterType="Long" resultMap="BaseResultMap">
+        SELECT
+            t2.id,
+            t2.function_code,
+            t2.function_name,
+            t2.function_url
+            FROM
+            sys_role_function t1
+            LEFT JOIN
+            sys_function t2
+            ON t1.function_id = t2.id
+            AND t2.del_flag = 1
+            WHERE
+            t1.role_id = #{roleId}
+		    AND t1.del_flag = 1
+    </select>
+
+    <select id="getMenuFunctions" parameterType="com.moon.bible.dto.sysmenu.SysMenuDto" resultType="com.moon.bible.dto.sysmenu.MenuTreeDto">
+        SELECT
+        CONCAT('api-',t1.id) AS menuId,
+        t1.function_name AS menuName
+        FROM
+        sys_function t1
+        <if test="isAdmin != 1">
+            JOIN user_role_function t2
+            ON t2.function_id = t1.id
+            AND t2.del_flag = 1
+        </if>
+        WHERE
+        t1.menu_id = #{id}
+        AND t1.del_flag = 1
+        AND t1.rule = #{rule}
+        <if test="isAdmin != 1">
+            AND t2.role_id = #{roleId}
+        </if>
+    </select>
+
+</mapper>

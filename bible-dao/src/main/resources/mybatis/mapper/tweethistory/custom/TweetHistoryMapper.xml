@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 本文件由代码生成器自动完成 -->
+<mapper namespace="com.moon.bible.mapper.tweethistory.TweetHistoryMapper" >
+
+	<select id="getHistoryByDate" parameterType="Map" resultMap="BaseResultMap" >
+		SELECT
+		td.id,
+		td.topic_id,
+		td.title,
+		td.from_author,
+		td.content,
+		td.img,
+		td.creator,
+		td.creator_name,
+		td.create_time,
+		td.del_flag,
+		td.count
+		FROM tweet_history th
+		LEFT JOIN tweet_details td ON tc.tweetdetails_id = td.id AND td.del_flag = 1
+		WHERE th.del_flag = 1
+		<if test="userId!=null" >
+			AND th.user_id = #{userId}
+		</if>
+		<if test="date!=null">
+			AND th.date_format(th.history_time, '%Y-%m-%d') = #{date}
+		</if>
+		<if test="tweetdetailsId!=null">
+			AND th.tweetdetails_id = #{tweetdetailsId}
+		</if>
+	</select>
+
+	<select id="getHistoryList" resultType="com.moon.bible.dto.tweetdetails.TweetDetailsHistoryDto">
+		SELECT
+		td.id,
+		td.topic_id,
+		td.title,
+		td.from_author,
+		td.content,
+		td.img,
+		td.creator,
+		td.creator_name,
+		td.create_time,
+		td.del_flag,
+		td.count,
+		date_format(th.history_time, '%Y-%m-%d') as historyDate
+		FROM tweet_history th
+		LEFT JOIN tweet_details td ON th.tweetdetails_id = td.id AND td.del_flag = 1
+		WHERE th.del_flag = 1
+		<if test="userId!=null" >
+			AND th.user_id = #{userId}
+		</if>
+			and date_format(NOW(),'%Y-%m-%d') &gt;= date_format(th.history_time, '%Y-%m-%d')
+			and DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 7 DAY),'%Y-%m-%d') &lt;= date_format(th.history_time, '%Y-%m-%d')
+    </select>
+
+	<select id="getHistoryCount" resultType="java.lang.Integer" >
+		SELECT
+		count(1)
+		FROM tweet_history th
+		WHERE th.del_flag = 1
+		<if test="userId!=null" >
+			AND th.user_id = #{userId}
+		</if>
+		and date_format(NOW(),'%Y-%m-%d') &gt;= date_format(th.history_time, '%Y-%m-%d')
+		and DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 7 DAY),'%Y-%m-%d') &lt;= date_format(th.history_time, '%Y-%m-%d')
+	</select>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<configuration>
+    <classpath>
+        <entry>lib/ojdbc14.jar</entry>
+        <entry>lib/sqljdbc4.jar</entry>
+        <entry>lib/mysql-connector-java-5.1.39.jar</entry>
+        <entry>lib/postgresql-8.2-505.jdbc2.jar</entry>
+    </classpath>
+    <connections>
+        <database name="mysql">
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+            <url>jdbc:mysql://localhost:3306/bible?serverTimezone=GMT&amp;useUnicode=true&amp;characterEncoding=UTF-8</url>
+            <username>root</username>
+            <password>system</password>
+            <schema/>
+        </database>
+    </connections>
+    <targetProject>targetProject</targetProject>
+    <basePackage>com.moon.bible</basePackage>
+    <moduleName>圣经</moduleName>
+    <templates>
+        <template engine="freemarker" name="view.ftl" selected="true">
+            <templateFile>view.ftl</templateFile>
+            <targetPath>${targetProject}\\plat\\src\\main\\webapp\\${table.className?lower_case}</targetPath>
+            <targetFileName>${table.className}.vue</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="js.ftl" selected="true">
+            <templateFile>js.ftl</templateFile>
+            <targetPath>${targetProject}\\plat\\src\\main\\webapp\\${table.className?lower_case}</targetPath>
+            <targetFileName>${table.className}.js</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="entity.ftl" selected="true">
+            <templateFile>entity.ftl</templateFile>
+            <targetPath>${targetProject}\\plat\\src\\main\\java\\${basePackage}.entity.${table.className?lower_case}</targetPath>
+            <targetFileName>${table.className}.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="controller.ftl" selected="true">
+            <templateFile>controller.ftl</templateFile>
+            <targetPath>${targetProject}\\plat\\src\\main\\java\\${basePackage}.controller.${table.className?lower_case}</targetPath>
+            <targetFileName>${table.className}Controller.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="iservice.ftl" selected="true">
+            <templateFile>iservice.ftl</templateFile>
+            <targetPath>${targetProject}\\plat\\src\\main\\java\\${basePackage}.api.${table.className?lower_case}</targetPath>
+            <targetFileName>I${table.className}Service.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="iserviceimpl.ftl" selected="true">
+            <templateFile>iserviceimpl.ftl</templateFile>
+            <targetPath>${targetProject}\\plat\\src\\main\\java\\${basePackage}.impl.${table.className?lower_case}</targetPath>
+            <targetFileName>${table.className}ServiceImpl.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="mapper.ftl" selected="true">
+            <templateFile>mapper.ftl</templateFile>
+            <targetPath>${targetProject}\\plat\\src\\main\\java\\${basePackage}.mapper.${table.className?lower_case}</targetPath>
+            <targetFileName>${table.className}Mapper.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="sql_mapper.ftl" selected="true">
+            <templateFile>sql_mapper.ftl</templateFile>
+            <targetPath>${targetProject}\\plat\\src\\main\\resources\\mybatis.mapper.${table.className?lower_case}.auto</targetPath>
+            <targetFileName>${table.className}Mapper.xml</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+    </templates>
+</configuration>
